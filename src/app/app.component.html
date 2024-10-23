@@ -1,1 +1,4 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+@for (image of images; track image.name) {
+    <div>{{image.name}}</div>
+<img [src]="image.url" alt="" height="400" width="400"/>
+}
