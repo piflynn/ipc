@@ -13,11 +13,14 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { OrchidService } from './orchid.service';
-import { DisplayImage } from './models';
+import { DisplayImage, StreamBlob } from './models';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, MatToolbarModule, MatCardModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -50,7 +53,18 @@ export class AppComponent implements OnInit {
             .map((frame) => ({name: frame.stream.name, url: URL.createObjectURL(frame.blob)})))
       );
   }
-
+  
+    /**
+   * Gets the frame image urls (as blobs) and stream data
+   *
+   * @remarks
+   * 
+   *
+   * @param sessionId - The userSession Id
+   * @returns an object containing the blob imageUrl from the frame and the associated stream
+   *
+   * @beta
+   */
   private getPrimaryFrames(sessionId: string) {
     return this.orchid.getStreams(sessionId).pipe(
       map((res) => res.streams),
@@ -59,8 +73,9 @@ export class AppComponent implements OnInit {
           mergeMap(
             (stream) =>
               this.orchid.getFrame(sessionId, stream.id).pipe(
-                map((blob) => ({ stream, blob })),
-                catchError((err) => of())
+                map((blob) => ({ stream, blob } as StreamBlob)),
+                // TODO: Add more robust error handling
+                catchError((err) => of()) // prevents successive requests from getting canceled after a failure
               ),
             this.requestConcurrency
           ),

@@ -32,5 +32,10 @@ export interface UserSession {
     name: string;
     url: string;
   }
+
+  export interface StreamBlob {
+    stream: Stream;
+    blob: Blob;
+  }
   
   

@@ -1,4 +1,13 @@
-@for (image of images; track image.name) {
-    <div>{{image.name}}</div>
-<img [src]="image.url" alt="" height="400" width="400"/>
-}
+<mat-toolbar></mat-toolbar>
+<div class="grid-wrapper">
+  <!-- <div class="grid-container"> -->
+    @for (image of images; track image.name) {
+        <div class="grid-item">
+            <h3>{{ image.name }}</h3>
+            <mat-card class="grid-item">
+                <img mat-card-image [src]="image.url" [alt]="image.name" />
+            </mat-card>
+        </div>
+    }
+  <!-- </div> -->
+</div>
