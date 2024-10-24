@@ -1,0 +1,10 @@
+<div class="grid-wrapper">
+  @for (image of images; track image.id) {
+  <div class="grid-item">
+    <h3>{{ image.name }}</h3>
+    <mat-card class="grid-item">
+      <img mat-card-image [src]="image.url" [alt]="image.name" />
+    </mat-card>
+  </div>
+  }
+</div>

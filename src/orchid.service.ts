@@ -37,6 +37,10 @@ export class OrchidService {
       {
         params: {
           sid: sessionId,
+          fallback: true,
+          // time: 0,
+          width: 400,
+          height: 400
         },
         responseType: 'blob',
         headers: { Accept: 'image/jpeg' },

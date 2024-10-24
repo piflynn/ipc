@@ -1,11 +1,13 @@
-<mat-toolbar></mat-toolbar>
-<div class="grid-wrapper">
-    @for (image of images; track image.name) {
-        <div class="grid-item">
-            <h3>{{ image.name }}</h3>
-            <mat-card class="grid-item">
-                <img mat-card-image [src]="image.url" [alt]="image.name" />
-            </mat-card>
-        </div>
-    }
-</div>
+<mat-toolbar class="toolbar" color="primary">
+  <span>IPC</span>
+  <button mat-button (click)="onButtonLinkClick(BUTTON_LINKS.VIEWER)">
+    Viewer
+  </button>
+  <button mat-button (click)="onButtonLinkClick(BUTTON_LINKS.TAYLOR_SERIES)">
+    Taylor-Series
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
+
+
+
