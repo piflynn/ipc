@@ -12,9 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  title = 'IPC';
   BUTTON_LINKS = AppLinks;
 
   constructor(private router: Router) {}

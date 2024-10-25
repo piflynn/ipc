@@ -5,12 +5,21 @@
     <input
       #input
       matInput
+      [formControl]="iterationsInput"
       placeholder="Enter an Integer"
       type="number"
-      value="20"
+      (keyup.enter)="onEnterPress(input.value)"
     />
+    @if(iterationsInput.errors) {
+    <mat-error>Please enter an integer</mat-error>
+    }
   </mat-form-field>
-  <button mat-flat-button color="primary" (click)="estimatePi(input.value)">
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!iterationsInput.value || !iterationsInput.valid"
+    (click)="estimatePi(input.value)"
+  >
     Calculate
   </button>
   @if(results.length) {
@@ -26,8 +35,8 @@
       <tr>
         <td>{{ result.i | number }}</td>
         <td>{{ result.pi | number : '1.3-3' }}</td>
-        <td>{{ result.error | number : '1.2-2' }}</td>
-        <td>{{ result.percentError | number : '1.2-2' }}</td>
+        <td>{{ result.error | number : '1.3-3' }}</td>
+        <td>{{ result.percentError | number : '1.2-2' }}&percnt;</td>
       </tr>
       }
     </table>

@@ -21,7 +21,7 @@ import {
   toArray,
 } from 'rxjs';
 import { DisplayImage, StreamBlob } from 'src/models';
-import { OrchidService } from 'src/orchid.service';
+import { OrchidService } from 'src/orchid/orchid.service';
 @Component({
   selector: 'app-viewer',
   standalone: true,
@@ -33,7 +33,7 @@ import { OrchidService } from 'src/orchid.service';
 export class ViewerComponent implements OnInit {
   private readonly requestConcurrency = 2;
   private readonly destroyRef = inject(DestroyRef);
-  private readonly pollingInterval$ = timer(0, 10 * 1000); // use timer to create 5 second polling interval
+  private readonly pollingInterval$ = timer(0, 5 * 1000); // use timer to create 5 second polling interval
   images: DisplayImage[] = [];
   loaded = false;
 

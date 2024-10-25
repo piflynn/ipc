@@ -1,25 +1,32 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule } from '@angular/router';
-
+import { AppLinks } from 'src/models';
+import { Router, provideRouter } from '@angular/router';
+import { appRoutes } from './app.routes';
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let router: Router;
+  let navSpy: jest.SpyInstance;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterModule.forRoot([])],
+      providers: [provideRouter(appRoutes)],
     }).compileComponents();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    navSpy = jest.spyOn(router, 'navigate');
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome ipc');
   });
 
-  it(`should have as title 'ipc'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ipc');
+  it(`should have a title 'IPC'`, () => {
+    expect(app.title).toEqual('IPC');
+  });
+
+  describe('onButtonClick', () => {
+    it('should call router.navigate', () => {
+      app.onButtonLinkClick(AppLinks.TAYLOR_SERIES);
+      expect(navSpy).toHaveBeenCalledWith([AppLinks.TAYLOR_SERIES]);
+    });
   });
 });

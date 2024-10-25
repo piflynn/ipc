@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { TaylorSeriesPiResult } from 'src/models';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { integerValidator } from './integer-validator';
 
 @Component({
   standalone: true,
@@ -14,6 +16,7 @@ import { TaylorSeriesPiResult } from 'src/models';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    ReactiveFormsModule,
   ],
   selector: 'app-taylor-series',
   templateUrl: './taylor-series.component.html',
@@ -22,6 +25,15 @@ import { TaylorSeriesPiResult } from 'src/models';
 })
 export class TaylorSeriesComponent {
   results: TaylorSeriesPiResult[] = [];
+  iterationsInput = new FormControl(20, [
+    Validators.required,
+    integerValidator(),
+  ]);
+  onEnterPress(value: string) {
+    if (this.iterationsInput.valid) {
+      this.estimatePi(value);
+    }
+  }
   estimatePi(input: string) {
     const iterations = parseInt(input);
     const results = [];

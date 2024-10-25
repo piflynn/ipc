@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { StreamsResponse, UserSession } from './models';
+import { StreamsResponse, UserSession } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -38,14 +38,12 @@ export class OrchidService {
         params: {
           sid: sessionId,
           fallback: true,
-          // time: 0,
           width: 400,
-          height: 400
+          height: 400,
         },
         responseType: 'blob',
         headers: { Accept: 'image/jpeg' },
       }
     );
   }
-
 }
