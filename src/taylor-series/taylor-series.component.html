@@ -1,6 +1,6 @@
 <div class="wrapper">
-  <img src="taylor-series.png" alt="taylor-series" width="800px" />
-  <mat-form-field appearance="outline">
+  <img src="taylor-series.png" alt="taylor-series" />
+  <mat-form-field class="form" appearance="outline">
     <mat-label>Iterations</mat-label>
     <input
       #input
@@ -14,9 +14,9 @@
     Calculate
   </button>
   @if(results.length) {
-  <mat-card>
+  <mat-card class="table-card">
     <table style="width: 100%">
-      <tr>
+      <tr class="table-header">
         <th>i</th>
         <th>&#x3A0;</th>
         <th>Error</th>
@@ -24,10 +24,10 @@
       </tr>
       @for (result of results; track result.i ) {
       <tr>
-        <td>{{ result.i }}</td>
-        <td>{{ result.pi }}</td>
-        <td>{{ result.error }}</td>
-        <td>{{ result.percentError }}</td>
+        <td>{{ result.i | number }}</td>
+        <td>{{ result.pi | number : '1.3-3' }}</td>
+        <td>{{ result.error | number : '1.2-2' }}</td>
+        <td>{{ result.percentError | number : '1.2-2' }}</td>
       </tr>
       }
     </table>

@@ -4,4 +4,24 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+}
+
+.form {
+  margin-top: 1rem;
+}
+
+.table-card {
+  width: 400px;
+  margin-top: 1rem;
+}
+
+td {
+  text-align: center;
 }
