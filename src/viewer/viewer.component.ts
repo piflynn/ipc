@@ -63,16 +63,6 @@ export class ViewerComponent implements OnInit {
         this.loaded = true;
         this.cd.markForCheck();
       });
-
-    // timer(0, 5 * 1000)
-    //   .pipe(takeUntilDestroyed(this.destroyRef))
-    //   .subscribe(() => {
-    //     console.log('hi')
-
-    //     const timestamp = new Date().getTime();
-    //     this.images = this.images.map(image => ({...image, url: `${image.url}?t=${timestamp}`}));
-    //     console.log(this.images[0])
-    //   });
   }
 
   /**

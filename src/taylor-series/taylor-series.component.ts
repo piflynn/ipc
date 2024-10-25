@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { TaylorSeriesPiResult } from 'src/models';
 
 @Component({
   standalone: true,
@@ -12,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
+    MatCardModule,
   ],
   selector: 'app-taylor-series',
   templateUrl: './taylor-series.component.html',
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaylorSeriesComponent {
+  results: TaylorSeriesPiResult[] = [];
   estimatePi(input: string) {
     const iterations = parseInt(input);
     const results = [];
@@ -39,6 +41,6 @@ export class TaylorSeriesComponent {
       i += 2;
       iteration++;
     }
-    return results;
+    this.results = results;
   }
 }

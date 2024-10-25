@@ -42,3 +42,10 @@ export enum AppLinks {
   VIEWER = 'viewer',
   TAYLOR_SERIES = 'taylor-series',
 }
+
+export interface TaylorSeriesPiResult {
+  i: number;
+  pi: number;
+  error: number;
+  percentError: number;
+}

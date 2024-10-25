@@ -2,9 +2,35 @@
   <img src="taylor-series.png" alt="taylor-series" width="800px" />
   <mat-form-field appearance="outline">
     <mat-label>Iterations</mat-label>
-    <input #input matInput placeholder="Enter an Integer" type="number" />
+    <input
+      #input
+      matInput
+      placeholder="Enter an Integer"
+      type="number"
+      value="20"
+    />
   </mat-form-field>
   <button mat-flat-button color="primary" (click)="estimatePi(input.value)">
     Calculate
   </button>
+  @if(results.length) {
+  <mat-card>
+    <table style="width: 100%">
+      <tr>
+        <th>i</th>
+        <th>&#x3A0;</th>
+        <th>Error</th>
+        <th>&percnt; Error</th>
+      </tr>
+      @for (result of results; track result.i ) {
+      <tr>
+        <td>{{ result.i }}</td>
+        <td>{{ result.pi }}</td>
+        <td>{{ result.error }}</td>
+        <td>{{ result.percentError }}</td>
+      </tr>
+      }
+    </table>
+  </mat-card>
+  }
 </div>
