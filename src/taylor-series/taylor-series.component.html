@@ -1,1 +1,10 @@
-<p>taylor-series works!</p>
+<div class="wrapper">
+  <img src="taylor-series.png" alt="taylor-series" width="800px" />
+  <mat-form-field appearance="outline">
+    <mat-label>Iterations</mat-label>
+    <input #input matInput placeholder="Enter an Integer" type="number" />
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="estimatePi(input.value)">
+    Calculate
+  </button>
+</div>

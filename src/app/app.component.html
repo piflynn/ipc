@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar" color="primary">
-  <span>IPC</span>
+  <span class="title">IPC</span>
   <button mat-button (click)="onButtonLinkClick(BUTTON_LINKS.VIEWER)">
     Viewer
   </button>
@@ -7,7 +7,6 @@
     Taylor-Series
   </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
-
-
-
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
